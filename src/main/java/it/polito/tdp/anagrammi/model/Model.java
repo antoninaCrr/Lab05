@@ -3,9 +3,13 @@ package it.polito.tdp.anagrammi.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import it.polito.tdp.anagrammi.db.AnagrammiDAO;
+
 public class Model {
 	
+	AnagrammiDAO aDao = new AnagrammiDAO();
 	private List<String> anagrammi;
+	
 
 	public List<String> anagramma(String s) { // interfaccia pubblica che ti permette di preparare i dati che servono alla ricorsione
 		anagrammi = new LinkedList<String>();
@@ -31,5 +35,9 @@ public class Model {
 				
 			}
 		}
+	}
+	
+	public boolean isCorrect(String anagramma) {
+		return aDao.isCorrect(anagramma);
 	}
 }

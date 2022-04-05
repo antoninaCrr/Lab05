@@ -12,7 +12,6 @@ import java.util.*;
 public class FXMLController {
 	
 	private Model model;
-	//private List<String> anagrammi;
 
     @FXML
     private ResourceBundle resources;
@@ -34,7 +33,10 @@ public class FXMLController {
     	String daAnagrammare = this.txtInput.getText();
     	List<String> anagrammi = model.anagramma(daAnagrammare);
     	for(String si : anagrammi) {
-    		this.txtCorretti.appendText(si.toString()+"\n");
+    		if(model.isCorrect(si))
+    			this.txtCorretti.appendText(si.toString()+"\n");
+    		else
+    			this.txtErrati.appendText(si.toString()+"\n");
     	}
     	
 
@@ -42,7 +44,9 @@ public class FXMLController {
 
     @FXML
     void doReset(ActionEvent event) {
-
+    	this.txtInput.clear();
+    	this.txtCorretti.clear();
+    	this.txtErrati.clear();
     }
 
     @FXML
